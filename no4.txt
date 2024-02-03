@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Harga per pasang untuk setiap jenis anting
+        int hargaRuby = 1000000;
+        int hargaTopaz = 1250000;
+        int hargaPermata = 3000000;
+
+        // Jumlah stok anting untuk setiap jenis
+        int stokRuby = 5;
+        int stokTopaz = 3;
+        int stokPermata = 1;
+
+        // Menghitung pendapatan maksimum
+        int pendapatanMaksimum = HitungPendapatanMaksimum(hargaRuby, hargaTopaz, hargaPermata, stokRuby, stokTopaz, stokPermata);
+
+        Console.WriteLine("Pendapatan Maksimum: " + pendapatanMaksimum);
+
+    }
+
+    static int HitungPendapatanMaksimum(int hargaRuby, int hargaTopaz, int hargaPermata, int stokRuby, int stokTopaz, int stokPermata)
+    {
+        // Mengurutkan harga per pasang secara menurun
+        int[] hargaPerPasang = { hargaPermata, hargaTopaz, hargaRuby };
+        Array.Sort(hargaPerPasang);
+        Array.Reverse(hargaPerPasang);
+
+        // Menghitung pendapatan maksimum dengan menjual anting yang memiliki harga tertinggi terlebih dahulu
+        int pendapatanMaksimum = 0;
+        pendapatanMaksimum += Math.Min(stokPermata, 2) * hargaPerPasang[0];
+        pendapatanMaksimum += Math.Min(stokTopaz, 2) * hargaPerPasang[1];
+        pendapatanMaksimum += Math.Min(stokRuby, 2) * hargaPerPasang[2];
+
+        return pendapatanMaksimum;
+    }
+}

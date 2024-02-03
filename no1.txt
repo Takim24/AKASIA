@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        string inputString = "USOMAANAPAIUMASYDNIP";
+        int result = CountWords(inputString);
+        Console.WriteLine($"Jumlah kata 'SIAPA' yang dihasilkan = {result}");
+        Console.ReadKey();
+    }
+
+    static int CountWords(string input)
+    {
+        int count = 0;
+
+        // Menghitung frekuensi setiap huruf dalam input
+        Dictionary<char, int> charFrequency = new Dictionary<char, int>();
+        foreach (char c in input)
+        {
+            if (charFrequency.ContainsKey(c))
+                charFrequency[c]++;
+            else
+                charFrequency[c] = 1;
+        }
+
+        // Menghitung berapa kali kata 'SIAPA' dapat dibentuk
+        while (CanFormWords(charFrequency))
+        {
+            foreach (char c in "SIAPA")
+            {
+                if (charFrequency.ContainsKey(c))
+                    charFrequency[c]--;
+                else
+                    return count; // Jika tidak bisa membentuk 'SIAPA', keluar dari foreach
+            }
+            count++;
+        }
+
+        return count;
+    }
+
+    static bool CanFormWords(Dictionary<char, int> charFrequency)
+    {
+        foreach (char c in "SIAPA")
+        {
+            if (!charFrequency.ContainsKey(c) || charFrequency[c] <= 0)
+                return false;
+        }
+        return true;
+    }
+}

@@ -1,0 +1,26 @@
+public int perkalianSederhana(int j, int k)
+        {
+            int hasil = 0;
+
+            while (j>0)
+            {
+                total += k;
+                j--;
+            }
+            return hasil;
+        }
+		
+a. untuk kesalahan function di atas adalah penggunaan variable 'total' di dalam while, karena variable 'total' tersebut tidak di definisikan sebagai variable,
+	yang seharusnya variable 'total' adalah 'hasil';
+b. 
+public int perkalianSederhana(int j, int k)
+        {
+            int hasil = 0;
+
+            while (j>0)
+            {
+                hasil += k;
+                j--;
+            }
+            return hasil;
+        }
